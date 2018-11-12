@@ -5,23 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingSoftware.Model;
+using BookingSoftware.Model.Interface;
+using BookingSoftware.Model.Utlity;
+using BookingSoftware.View;
+
 
 namespace BookingSoftware.ViewModel
 {
-    public class LoginViewModel : INotifyPropertyChanged, ICustomer
+    public class LoginViewModel : BaseViewModel, ICustomer
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         private string _name { get; set; }
         private string _password { get; set; }
         private string _email { get; set; }
         private string _gender { get; set; }
         private int _phoneNumber { get; set; }
         private string _address { get; set; }
+        
+        //View commands
+        public RelayCommand LogIn { get; set; }
+        public RelayCommand ShowResetPassword { get; set; }
+        public RelayCommand ShowCreateAccount { get; set; }
 
+        //Source properties
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set {
+                _name = value;
+            }
         }
         public string Password
         {
@@ -49,19 +60,38 @@ namespace BookingSoftware.ViewModel
             set { _address = value; }
         }
 
-        public void DoLogin(string email, string password)
+        
+        public LoginViewModel()
+        {
+            LogIn = new RelayCommand(DoLogin);
+            ShowCreateAccount = new RelayCommand(ShowCreateAccountView);
+            ShowResetPassword = new RelayCommand(ShowResetAccountView);
+        }
+        
+        public void DoLogin(object s)
         {
             //TODO: Implement persistency method "CheckUserCredentials(string email, string password)
+            
+            //bool loginCorrect = CheckUserCredentials(string email, string password);
+            //if (loginCorrect == true)
+            //{
+            //    //TODO: Find out how to switch to new view + viewmodel and dispose of old ones
+            //}
+            //else
+            //{
+            //    //TODO: Display an error in view
+            //}
         }
 
-        public void DoRegister()
+        public void ShowCreateAccountView(object s)
         {
-            //TODO: Find out how to switch to a new view and it's viewmodel while disposing of LoginView and LoginViewModel
+            //TODO: Find out how to switch to a new view
+            CurrentView = new CreateAccountView();
         }
 
-        public void DoReset()
+        public void ShowResetAccountView(object s)
         {
-            //TODO: Same as DoRegister()
+            //TODO: Same as DoCreateAccount()
         }
     }
 }
