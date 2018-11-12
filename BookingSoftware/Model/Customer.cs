@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingSoftware.Model.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,34 +18,29 @@ namespace BookingSoftware.Model
 
         public string Name
         {
-            get { return _name;}
+            get { return _name; }
             set { _name = value; }
         }
-
         public string Password
         {
             get { return _password; }
             set { _password = value; }
         }
-
         public string Email
         {
             get { return _email; }
             set { _email = value; }
         }
-
         public string Gender
         {
             get { return _gender; }
             set { _gender = value; }
         }
-
         public int PhoneNumber
         {
             get { return _phoneNumber; }
             set { _phoneNumber = value; }
         }
-
         public string Address
         {
             get { return _address; }
