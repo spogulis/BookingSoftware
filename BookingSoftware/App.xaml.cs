@@ -68,11 +68,9 @@ namespace BookingSoftware
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-<<<<<<< HEAD
+
                     rootFrame.Navigate(typeof(LoginPage), e.Arguments);
-=======
-                    rootFrame.Navigate(typeof(MainView), e.Arguments);
->>>>>>> 6dc964c64f12b4fd9b99e4e16e2fefee9b0bd0c2
+
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
