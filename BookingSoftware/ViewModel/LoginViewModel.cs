@@ -86,6 +86,7 @@ namespace BookingSoftware.ViewModel
         public void ShowCreateAccountView(object s)
         {
             //TODO: Find out how to switch to a new view
+            //CurrentView = new CreateAccountView();
         }
 
         public void ShowResetAccountView(object s)
