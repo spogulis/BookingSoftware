@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookingSoftware.Model;
-using BookingSoftware.Model.Interface;
+﻿using BookingSoftware.Model;
 using BookingSoftware.Model.Utlity;
 using BookingSoftware.View;
-
 
 namespace BookingSoftware.ViewModel
 {
@@ -71,7 +63,7 @@ namespace BookingSoftware.ViewModel
         public void DoLogin(object s)
         {
             //TODO: Implement persistency method "CheckUserCredentials(string email, string password)
-            
+
             //bool loginCorrect = CheckUserCredentials(string email, string password);
             //if (loginCorrect == true)
             //{
@@ -81,6 +73,8 @@ namespace BookingSoftware.ViewModel
             //{
             //    //TODO: Display an error in view
             //}
+            FrameNavigation.ActivateFrameNavigation(typeof(TestCustomerPage));
+
         }
 
         public void ShowCreateAccountView(object s)
