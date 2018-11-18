@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Input;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace FranceVacanses.View
+namespace BookingSoftware.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -15,7 +15,7 @@ namespace FranceVacanses.View
     public sealed partial class LoginPage : Page
     {
        
-        public List<string> Gender { get => this.gender; set => this.gender = value; }
+        //public List<string> Gender { get => this.gender; set => this.gender = value; }
 
         List<string> gender;
         public LoginPage()
@@ -27,23 +27,16 @@ namespace FranceVacanses.View
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
 
-            gender = new List<string>{};
-            gender.Add("Male");
-            gender.Add("Female");
+
+            //gender = new List<string>{};
+            //gender.Add("Male");
+            //gender.Add("Female");
 
          
 
 
 
         }
-        private void ForgotPassword_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ForgetPasswordPage));
-        }
-
-        private void ForgotPassword_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            
-        }
+        
     }
 }

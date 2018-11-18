@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="FranceVacanses.View.LoginPage"
+    x:Class="BookingSoftware.View.LoginPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FranceVacanses.View"
+    xmlns:local="using:BookingSoftware.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
@@ -51,7 +51,7 @@
 
             <Pivot x:Name="Pivot"
                Width="500"
-               Height="520"
+               Height="820"
                HorizontalAlignment="Center"
                Margin="0,0,0,0">
 
@@ -120,88 +120,110 @@
                             Background="#FF1F5BA5" 
                             FontFamily="Segoe UI Light"
                             Command ="{Binding LogIn}" />
-              
 
-                        <TextBlock x:Name="ForgotPassword"
-                            HorizontalAlignment="Left"
+                    
+                        <Button x:Name="ForgotPassword"
                             Height="55"
                             Width="400"
-                            Text="Forgot password?"
-                            TextAlignment="Center"
+                            Content="Forgot password?"
+                            HorizontalAlignment="Center"
                             Foreground="White"
-                            Margin="40,440,0,0"
+                            Margin="0,440,0,0"
                             FontSize="18"
                             FontFamily="Segoe UI Light"
-                            Grid.ColumnSpan="3" 
+                            Grid.Column="1" 
                             FocusVisualSecondaryBrush="Transparent" 
                             FocusVisualPrimaryBrush="#FF747373"
-                            PointerPressed="ForgotPassword_PointerPressed" PointerEntered="ForgotPassword_PointerEntered"/>
+                            Command="{Binding ShowResetPassword}"
+                            />
                     </Grid>
                 </PivotItem>
-                <PivotItem Header="Sign up" 
+                <PivotItem 
+                           Height="auto"
+                           Header="Sign up" 
                            HorizontalAlignment="Center" 
                            VerticalAlignment="Top">
                     <Grid>
-                        <TextBox x:Name="SignUpEmailBox"
-                                 PlaceholderText="Enter your email address"
-                                 Width="400"
-                                 Height="53"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Top"
-                                 Margin="0,20,0,0"
-                                 FontSize="20"/>
-
-                        <PasswordBox x:Name="SignUpPasswordBox"
-                                     PlaceholderText="Enter your password"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Top"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <TextBox x:Name="SignUpEmailBox"
+                                     Text="{Binding User.Email, Mode=TwoWay}"
+                                     PlaceholderText="Enter your email address"
                                      Width="400"
                                      Height="53"
-                                     Margin="0,80,0,0"
-                                     FontSize="20"/>
-
-                        <PasswordBox x:Name="SignUpPasswordConfirmBox"
-                                     PlaceholderText="Confirm your password"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Top"
-                                     Width="400"
-                                     Height="53"
-                                     Margin="0,140,0,0"
+                                     Margin="0,20,0,0"
                                      FontSize="20"/>
 
-                        <TextBox x:Name="NameBox"
-                                 PlaceholderText="Enter your full name"
-                                 Width="400"
-                                 Height="53"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Top"
-                                 Margin="0,200,0,0"
-                                 FontSize="20"/>
+                            <PasswordBox x:Name="SignUpPasswordBox"
+                                         Password="{Binding User.Password}"
+                                         PlaceholderText="Enter your password"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Top"
+                                         Width="400"
+                                         Height="53"
+                                         Margin="0,10,0,0"
+                                         FontSize="20"/>
 
-                        <ComboBox x:Name="ComboBox" 
-                                  PlaceholderText="Gender"
-                                  Height="53" 
-                                  Width="400" 
-                                  Margin="0,260,0,0"
-                                  FontSize="20"
-                                  DisplayMemberPath="Source" 
-                                  HorizontalAlignment="Center" 
-                                  VerticalAlignment="Top" Opacity="0.7">
-                                
-                            <x:String>Female</x:String>
-                            <x:String>Male</x:String>
+                            <PasswordBox x:Name="SignUpPasswordConfirmBox"
+                                         PlaceholderText="Confirm your password"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Top"
+                                         Width="400"
+                                         Height="53"
+                                         Margin="0,10,0,0"
+                                         FontSize="20"/>
+
+                            <TextBox x:Name="NameBox"
+                                     Text="{Binding User.Name, Mode=TwoWay}"
+                                     PlaceholderText="Enter your full name"
+                                     Width="400"
+                                     Height="53"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Top"
+                                     Margin="0,10,0,0"
+                                     FontSize="20"/>
+
+                            <ComboBox x:Name="ComboBox" 
+                                      PlaceholderText="Gender"
+                                      Height="53" 
+                                      Width="400" 
+                                      Margin="0,10,0,0"
+                                      FontSize="20"
+                                      DisplayMemberPath="Source" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Top" Opacity="0.7"
+                                      ItemsSource="{Binding genders}"
+                                      >
+                                                              
                                                                                        
-                        </ComboBox>
+                            </ComboBox>
 
-                        <Button x:Name="SignUpButn"
-                                Width="400"
-                                Height="53"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Center"
-                                Content="Sign up"
-                                FontSize="24"
-                                Background="#FF1F5BA5"
-                                Margin="0,400,0,0"/>
+                            <Button x:Name="SignUpBtn"
+                                    Command="{Binding CreateAccount}"
+                                    IsEnabled="{Binding CreateAccountBtnVisible}"
+                                    Width="400"
+                                    Height="53"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Center"
+                                    Content="Sign up"
+                                    FontSize="24"
+                                    Background="#FF1F5BA5"
+                                    Margin="0,40,0,20"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1">
+                            <!--<ItemsControl Height="230" ItemsSource="{Binding Errors.Errors}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Value}"></TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>-->
+                        </StackPanel>
                     </Grid>
                 </PivotItem>
             </Pivot>

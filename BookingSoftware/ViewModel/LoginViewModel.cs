@@ -1,63 +1,41 @@
 ﻿using BookingSoftware.Model;
 using BookingSoftware.Model.Utlity;
+using BookingSoftware.Persistency;
 using BookingSoftware.View;
+using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Input;
 
 namespace BookingSoftware.ViewModel
 {
-    public class LoginViewModel : BaseViewModel, ICustomer
+    public class LoginViewModel : BaseViewModel
     {
-        private string _name { get; set; }
-        private string _password { get; set; }
-        private string _email { get; set; }
-        private string _gender { get; set; }
-        private int _phoneNumber { get; set; }
-        private string _address { get; set; }
+        private IUser _user;
+
+        public IUser User
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
+        
         
         //View commands
         public RelayCommand LogIn { get; set; }
         public RelayCommand ShowResetPassword { get; set; }
         public RelayCommand ShowCreateAccount { get; set; }
-
-        //Source properties
-        public string Name
-        {
-            get { return _name; }
-            set {
-                _name = value;
-            }
-        }
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
-        public string Gender
-        {
-            get { return _gender; }
-            set { _gender = value; }
-        }
-        public int PhoneNumber
-        {
-            get { return _phoneNumber; }
-            set { _phoneNumber = value; }
-        }
-        public string Address
-        {
-            get { return _address; }
-            set { _address = value; }
-        }
-
+        
+        //Create account view commands
+        public RelayCommand CreateAccount { get; set; }
+        
         
         public LoginViewModel()
         {
             LogIn = new RelayCommand(DoLogin);
-            ShowCreateAccount = new RelayCommand(ShowCreateAccountView);
+            CreateAccount = new RelayCommand(DoCreateAccount);
             ShowResetPassword = new RelayCommand(ShowResetAccountView);
+
+            _user = new Customer();
+            
+
         }
         
         public void DoLogin(object s)
@@ -65,9 +43,16 @@ namespace BookingSoftware.ViewModel
             //TODO: Implement persistency method "CheckUserCredentials(string email, string password)
 
             //bool loginCorrect = CheckUserCredentials(string email, string password);
-            //if (loginCorrect == true)
+            //if (loginCorrect == true && _userType == "superAdmin") {
+            //    FrameNavigation.ActivateFrameNavigation(typeof(SuperAdminLandingPage));
+            //}
+            //else if (loginCorrect == true && _userType == "salesUser")
             //{
-            //    //TODO: Find out how to switch to new view + viewmodel and dispose of old ones
+            //    FrameNavigation.ActivateFrameNavigation(typeof(SalesLandingPage));
+            //}
+            //else if (loginCorrect == true && _userType == "customerUser")
+            //{
+            //    FrameNavigation.ActivateFrameNavigation(typeof(CustomerLandingPage));
             //}
             //else
             //{
@@ -77,15 +62,26 @@ namespace BookingSoftware.ViewModel
 
         }
 
-        public void ShowCreateAccountView(object s)
+
+        public void DoCreateAccount(object s)
         {
-            //TODO: Find out how to switch to a new view
-            //CurrentView = new CreateAccountView();
+            //1. Check if e-mail not taken already - Persistency
+            //2. Perform input validation - Model
+            //3. Notify View of validation results
+            //4. Pass model to Singleton
+            //5. Persistency layer creates permanent record
         }
+
+
+        public void ShowLoginView(object s)
+        {
+            FrameNavigation.ActivateFrameNavigation(typeof(LoginPage));
+        }
+
 
         public void ShowResetAccountView(object s)
         {
-            //TODO: Same as DoCreateAccount()
+            FrameNavigation.ActivateFrameNavigation(typeof(ForgetPasswordPage));
         }
     }
 }

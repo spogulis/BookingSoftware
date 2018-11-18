@@ -1,7 +1,9 @@
-﻿namespace BookingSoftware.Model
+﻿
+namespace BookingSoftware.Model
 {
-    public interface ICustomer
+    public interface IUser
     {
+        string UserType { get; set; }
         string Address { get; set; }
         string Email { get; set; }
         string Gender { get; set; }

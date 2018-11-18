@@ -1,4 +1,5 @@
 ﻿using BookingSoftware.View;
+using Prism.Windows.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,31 +10,16 @@ using Windows.UI.Xaml.Controls;
 
 namespace BookingSoftware.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : ValidatableBindableBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        //public Page _currentView;
-
-        //public Page CurrentView
+        //public event PropertyChangedEventHandler PropertyChanged;
+                
+        //protected void OnPropertyChanged(string info)
         //{
-        //    get
+        //    if (PropertyChanged != null)
         //    {
-        //        return _currentView;
-        //    }
-        //    set
-        //    {
-        //        CurrentView = value;
-        //        OnPropertyChanged("CurrentView");
+        //        PropertyChanged(this, new PropertyChangedEventArgs(info));
         //    }
         //}
-
-        
-        protected void OnPropertyChanged(string info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
     }
 }

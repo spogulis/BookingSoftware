@@ -6,54 +6,22 @@ using System.Threading.Tasks;
 
 namespace BookingSoftware.Model
 {
-    public class Customer : ICustomer
+    public class Customer : User
     {
-        private string _name { get; set; }
-        private string _password { get; set; }
-        private string _email { get; set; }
-        private string _gender { get; set; }
-        private int _phoneNumber { get; set; }
-        private string _address { get; set; }
-
-        public string Name
+        public Customer()
         {
-            get { return _name; }
-            set { _name = value; }
-        }
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
-        public string Gender
-        {
-            get { return _gender; }
-            set { _gender = value; }
-        }
-        public int PhoneNumber
-        {
-            get { return _phoneNumber; }
-            set { _phoneNumber = value; }
-        }
-        public string Address
-        {
-            get { return _address; }
-            set { _address = value; }
+            Name = "";
+            Password = "";
+            Email = "";
         }
 
-        public Customer(string name, string password, string email, string gender, int phoneNumber, string address)
+
+        public Customer(string name, string password, string email, string gender)
         {
-            _name = name;
-            _password = password;
-            _email = email;
-            _gender = gender;
-            _phoneNumber = phoneNumber;
-            _address = address; 
+            Name = name;
+            Password = password;
+            Email = email;
+            Gender = gender;
         }
     }
 }
