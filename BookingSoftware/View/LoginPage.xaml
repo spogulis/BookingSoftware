@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:viewmodel="using:BookingSoftware.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -20,6 +21,10 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/1.jpg" AlignmentX="Left" />
         </Grid.Background>
+
+        <Grid.DataContext>
+            <viewmodel:LoginViewModel/>
+        </Grid.DataContext>
 
         <StackPanel Width="550" 
                     Height="980"
@@ -113,7 +118,9 @@
                             Margin="40,260,0,0"
                             Grid.ColumnSpan="3" 
                             Background="#FF1F5BA5" 
-                            FontFamily="Segoe UI Light"/>
+                            FontFamily="Segoe UI Light"
+                            Command ="{Binding LogIn}" />
+              
 
                         <TextBlock x:Name="ForgotPassword"
                             HorizontalAlignment="Left"

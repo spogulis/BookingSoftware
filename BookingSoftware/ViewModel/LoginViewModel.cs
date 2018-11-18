@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookingSoftware.Model;
+﻿using BookingSoftware.Model;
 using BookingSoftware.Model.Utlity;
 using BookingSoftware.View;
-
 
 namespace BookingSoftware.ViewModel
 {
@@ -17,7 +10,6 @@ namespace BookingSoftware.ViewModel
         private string _password { get; set; }
         private string _email { get; set; }
         private string _gender { get; set; }
-        
         private int _phoneNumber { get; set; }
         private string _address { get; set; }
         
@@ -26,7 +18,6 @@ namespace BookingSoftware.ViewModel
         public RelayCommand ShowResetPassword { get; set; }
         public RelayCommand ShowCreateAccount { get; set; }
 
-        
         //Source properties
         public string Name
         {
@@ -72,7 +63,7 @@ namespace BookingSoftware.ViewModel
         public void DoLogin(object s)
         {
             //TODO: Implement persistency method "CheckUserCredentials(string email, string password)
-            
+
             //bool loginCorrect = CheckUserCredentials(string email, string password);
             //if (loginCorrect == true)
             //{
@@ -82,6 +73,8 @@ namespace BookingSoftware.ViewModel
             //{
             //    //TODO: Display an error in view
             //}
+            FrameNavigation.ActivateFrameNavigation(typeof(TestCustomerPage));
+
         }
 
         public void ShowCreateAccountView(object s)
