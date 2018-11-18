@@ -1,4 +1,4 @@
-﻿using FranceVacanses.View;
+﻿using BookingSoftware.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +15,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using BookingSoftware.View;
 
 namespace BookingSoftware
 {

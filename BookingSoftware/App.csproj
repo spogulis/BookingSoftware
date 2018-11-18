@@ -104,18 +104,6 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\ForgetPasswordPage.xaml.cs" />
     <Compile Include="View\LoginPage.xaml.cs" />
-    <Compile Include="View\CreateAccountView.xaml.cs">
-      <DependentUpon>CreateAccountView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ResetAccountView.xaml.cs">
-      <DependentUpon>ResetAccountView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -160,24 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Persistency\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="View\CreateAccountView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\LoginView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ResetAccountView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

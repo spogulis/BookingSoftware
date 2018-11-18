@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingSoftware.Model;
-using BookingSoftware.Model.Interface;
 using BookingSoftware.Model.Utlity;
 using BookingSoftware.View;
 
@@ -18,6 +17,7 @@ namespace BookingSoftware.ViewModel
         private string _password { get; set; }
         private string _email { get; set; }
         private string _gender { get; set; }
+        
         private int _phoneNumber { get; set; }
         private string _address { get; set; }
         
@@ -26,6 +26,7 @@ namespace BookingSoftware.ViewModel
         public RelayCommand ShowResetPassword { get; set; }
         public RelayCommand ShowCreateAccount { get; set; }
 
+        
         //Source properties
         public string Name
         {
