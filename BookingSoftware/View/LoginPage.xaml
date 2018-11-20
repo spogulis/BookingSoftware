@@ -191,13 +191,13 @@
 
                                 <RadioButton x:Name = "male" 
                                          Margin = "100,30,0,0" 
-                                         IsChecked="{Binding Gender, Mode=TwoWay}"
+                                         IsChecked="{Binding User.Gender, Mode=TwoWay}"
                                          GroupName="Gender"
                                          Content = "Male" />
 
                                 <RadioButton x:Name = "female" 
                                          Margin = "200,-33,0,0" 
-                                         IsChecked="{Binding Gender, Mode=TwoWay}"
+                                         IsChecked="{Binding User.Gender, Mode=TwoWay}"
                                          GroupName = "Gender" 
                                          Content = "Female" />
                             </StackPanel>
