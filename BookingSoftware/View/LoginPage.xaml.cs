@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
@@ -14,10 +15,8 @@ namespace BookingSoftware.View
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-       
-        //public List<string> Gender { get => this.gender; set => this.gender = value; }
 
-        List<string> gender;
+        //List<string> gender;
         public LoginPage()
         {
             this.InitializeComponent();
@@ -26,17 +25,6 @@ namespace BookingSoftware.View
             formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-
-
-            //gender = new List<string>{};
-            //gender.Add("Male");
-            //gender.Add("Female");
-
-         
-
-
-
         }
-        
     }
 }

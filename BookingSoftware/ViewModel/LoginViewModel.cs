@@ -16,8 +16,10 @@ namespace BookingSoftware.ViewModel
             get { return _user; }
             set { _user = value; }
         }
-        
-        
+
+        public string Gender { get; set; }
+      
+
         //View commands
         public RelayCommand LogIn { get; set; }
         public RelayCommand ShowResetPassword { get; set; }
@@ -35,6 +37,7 @@ namespace BookingSoftware.ViewModel
 
             _user = new Customer();
             
+
 
         }
         
