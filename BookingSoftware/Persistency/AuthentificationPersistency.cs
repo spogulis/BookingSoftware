@@ -29,7 +29,7 @@ namespace BookingSoftware.Persistency
         //Just some string that is being used while serializing  and deserializing.
         public static string TempStringCustomer;
 
-        
+       private static Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
 
 
         //Saving customer list to .json file.
@@ -111,50 +111,46 @@ namespace BookingSoftware.Persistency
         //Checking existence of user.
         public static async Task<bool> CheckIfExists()
         {
-            //Gets customer model from singleton.
-            Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
             //Read list from file.
             List<Customer> Customers = await GetCustomersListFromFile();
-            //save particular customer object in customer if email of particular object from list is same as email from  _customer.
-            Customer customer = Customers.FirstOrDefault(x => x.Email == _customer.Email);
-            //same as above.
-            Customer customer3 = Customers.FirstOrDefault(x => x.PhoneNumber == _customer.PhoneNumber);
-            //if there is no customer with given email or phone number on the list, then return false.
-            if (customer3 == null || customer == null)
+            //checks if any object's email from the list is same as the one from singleton. Same with Phone Number.
+             if ((Customers.FirstOrDefault(x => x.Email == _customer.Email) == null) || (Customers.FirstOrDefault(x => x.PhoneNumber == _customer.PhoneNumber) == null))
             {
                 return false;
             }
-            else
-            {
-                return true;
-            }
+            else { return true; }
         }
+        
+        
         //return customer with given email(may be usefull some day).
         public static async Task<Customer> GetUserByEmail()
         {
             Customer returnedCustomer = new Customer();
-            Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
+           
             List<Customer> clist = await GetCustomersListFromFile();
             returnedCustomer = clist.FirstOrDefault(x => x.Email == _customer.Email);
             return returnedCustomer;
 
         }
+       
+        
         //Create Account
-        public static async void CreateAccount()
+        public static async Task<bool> CreateAccount()
         {
             //Check if account with given email and password exists. If not then MesssegeDialog is being thrown on  screen.
             if (await CheckIfExists())
             {
                var dialog = new MessageDialog("You need to use other Email or Phone Number.");
                 await dialog.ShowAsync();
+                return false;
             }
             else
             {
-                Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
                 List<Customer> clist = await GetCustomersListFromFile();
                 //Adding customer to the list and then saving it into the file.
                 clist.Add(_customer);
                 SavingCustomerToFile(clist);
+                return true;
             }
         }
         //Modify account(dunno how it is supposed to work. I guess we need an other singleton object?)
@@ -171,11 +167,9 @@ namespace BookingSoftware.Persistency
         //Login to account.
         public static async Task<bool> LoginToAcc()
         {
-                Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
                 List<Customer> clist = await GetCustomersListFromFile();
-            //if object in the list will have same email and password as email and password passed by _customer then return true, if not throw messagedialog.
-            Customer customer = clist.FirstOrDefault(x =>( x.Email == _customer.Email && x.Password==_customer.Password));
-            if (customer == null)
+            //if any object from list has same email and password as the ones from singleton then return true if not throw MessageDialog.
+            if (clist.FirstOrDefault(x => (x.Email == _customer.Email && x.Password == _customer.Password)) == null)
             {
 
                 var dialog = new MessageDialog("You need to use different Email or password.");
