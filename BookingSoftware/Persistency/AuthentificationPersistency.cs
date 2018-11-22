@@ -20,19 +20,26 @@ namespace BookingSoftware.Persistency
 {
    static class AuthentificationPersistency
     {
+        //It makes folder with files somwhere in %appdata%. We will be able to figure out exact path with breakpoints later. But it doesnt really matter.
         public static StorageFolder folder = ApplicationData.Current.LocalFolder;
+        //Makes file with customer models.
         public static StorageFile Customers;
+        //Makes file with log(All exceptions will be saved there)-Its useless but makes project more professional. Am I right?
         public static StorageFile logfile;
+        //Just some string that is being used while serializing  and deserializing.
         public static string TempStringCustomer;
 
         
 
 
-        //Writing Dicionary to JSON and file.
-        public static async void SavngCustomerToFile(List<Customer> list)
+        //Saving customer list to .json file.
+        public static async void SavingCustomerToFile(List<Customer> list)
         {
+            //Serialize list to .json format.
             string json = JsonConvert.SerializeObject(list, Formatting.Indented);
+            //Create .json file with given name. If its already created then content will be replaced.
             Customers = await folder.CreateFileAsync("Customer.json", CreationCollisionOption.ReplaceExisting);
+            //Writes .json format to file.
             await FileIO.WriteTextAsync(Customers, json);
         }
        
@@ -40,19 +47,22 @@ namespace BookingSoftware.Persistency
         //Getting Customers string from Json.
         private static async Task<string> GetCustomersStrigFromJson()
         {
+            //Open file if it exist.
             Customers = await folder.CreateFileAsync("HostsList.json", CreationCollisionOption.OpenIfExists);
+            //Read file to json
             string json = await FileIO.ReadTextAsync(Customers);
-
+            //If there is nothing in  file then  return empty string.
             if (json == null)
             {
                 TempStringCustomer = "";
             }
+            //if its not empty then rewrite content to TempStringCustomer and return it.
             else { TempStringCustomer = json; }
             return TempStringCustomer;
         }
        
         
-        //Creating log file to store there all exceptions.
+        //Creating log file to store there all exceptions. No need to read from it anyway.
         public static async void AddLog(string log)
         {
 
@@ -72,19 +82,23 @@ namespace BookingSoftware.Persistency
         //Getting Customers list from File.
         public static async Task<List<Customer>> GetCustomersListFromFile()
         {
-
+            //return TempStringCustomer string(You can find method above).
             await GetCustomersStrigFromJson();
+            //Implementing list in which we will save objects.
             List<Customer> returnedlist = new List<Customer>();
             try
             {
+                //Read TempStringCustomer string to list.
                 returnedlist = JsonConvert.DeserializeObject<List<Customer>>(TempStringCustomer);
 
             }
+            //If smth will go wrong, extception will be saved to file.
             catch (Exception e)
             {
                 AuthentificationPersistency.AddLog($"{DateTime.Now}   exception {e.Message} was caught while getting Customers list\n");
 
             }
+            //if there is nothing in TempStringCustomer, then make a new list. If there is data in TempStringCustomer then return returnedlist.
             if (returnedlist == null)
             {
                 return new List<Customer>();
@@ -97,10 +111,15 @@ namespace BookingSoftware.Persistency
         //Checking existence of user.
         public static async Task<bool> CheckIfExists()
         {
+            //Gets customer model from singleton.
             Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
+            //Read list from file.
             List<Customer> Customers = await GetCustomersListFromFile();
+            //save particular customer object in customer if email of particular object from list is same as email from  _customer.
             Customer customer = Customers.FirstOrDefault(x => x.Email == _customer.Email);
+            //same as above.
             Customer customer3 = Customers.FirstOrDefault(x => x.PhoneNumber == _customer.PhoneNumber);
+            //if there is no customer with given email or phone number on the list, then return false.
             if (customer3 == null || customer == null)
             {
                 return false;
@@ -110,20 +129,20 @@ namespace BookingSoftware.Persistency
                 return true;
             }
         }
-
+        //return customer with given email(may be usefull some day).
         public static async Task<Customer> GetUserByEmail()
         {
-            Customer returnedCusomer = new Customer();
+            Customer returnedCustomer = new Customer();
             Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
             List<Customer> clist = await GetCustomersListFromFile();
-            returnedCusomer = clist.FirstOrDefault(x => x.Email == _customer.Email);
-            return returnedCusomer;
+            returnedCustomer = clist.FirstOrDefault(x => x.Email == _customer.Email);
+            return returnedCustomer;
 
         }
         //Create Account
         public static async void CreateAccount()
         {
-
+            //Check if account with given email and password exists. If not then MesssegeDialog is being thrown on  screen.
             if (await CheckIfExists())
             {
                var dialog = new MessageDialog("You need to use other Email or Phone Number.");
@@ -133,11 +152,12 @@ namespace BookingSoftware.Persistency
             {
                 Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
                 List<Customer> clist = await GetCustomersListFromFile();
+                //Adding customer to the list and then saving it into the file.
                 clist.Add(_customer);
-                SavngCustomerToFile(clist);
+                SavingCustomerToFile(clist);
             }
         }
-        //Modify account
+        //Modify account(dunno how it is supposed to work. I guess we need an other singleton object?)
         //public static async void ModifyAccount()
         //{
         //    Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
@@ -149,16 +169,37 @@ namespace BookingSoftware.Persistency
         
 
         //Login to account.
-        public static async void LoginToAcc()
+        public static async Task<bool> LoginToAcc()
         {
-            if (await CheckIfExists())
+                Customer _customer = ActiveUserSingleton.GetActiveUser() as Customer;
+                List<Customer> clist = await GetCustomersListFromFile();
+            //if object in the list will have same email and password as email and password passed by _customer then return true, if not throw messagedialog.
+            Customer customer = clist.FirstOrDefault(x =>( x.Email == _customer.Email && x.Password==_customer.Password));
+            if (customer == null)
             {
-                var dialog = new MessageDialog("You need to use other Email or Phone Number.");
+
+                var dialog = new MessageDialog("You need to use different Email or password.");
                 await dialog.ShowAsync();
+                return false;
             }
             else
+            {
+                return true;
+            }
 
+                
+                
+            
+            
+            
+               
+            
+           
+
+
+
+            }
         }
 
     }
-}
+
