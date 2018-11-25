@@ -43,7 +43,7 @@
 
         <StackPanel Width="550"
                     Height="980"
-                    Margin="0,0,0,0">
+                    Margin="0,0,0,0" PointerEntered="PointerEntered" PointerExited="PointerExited">
 
             <Image Source="/Assets/2.png" 
                    Height="150" 
@@ -53,7 +53,8 @@
                Width="500"
                Height="820"
                HorizontalAlignment="Center"
-               Margin="0,0,0,0">
+               Margin="0,0,0,0"
+               PointerEntered="PointerEntered" PointerExited="PointerExited">
 
                 <PivotItem x:Name="loginPivot"
                        Header="Login"
@@ -141,13 +142,15 @@
                            Height="auto"
                            Header="Sign up" 
                            HorizontalAlignment="Center" 
-                           VerticalAlignment="Top">
+                           VerticalAlignment="Top"
+                           PointerEntered="PointerEntered" PointerExited="PointerExited">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0">
+                        <StackPanel Grid.Row="0"
+                                    PointerEntered="PointerEntered" PointerExited="PointerExited" HorizontalAlignment="Stretch" Height="437" Margin="0,0,0,0" VerticalAlignment="Top">
                             <TextBox x:Name="SignUpEmailBox"
                                      Text="{Binding User.Email, Mode=TwoWay}"
                                      PlaceholderText="Enter your email address"
@@ -156,7 +159,8 @@
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Top"
                                      Margin="0,20,0,0"
-                                     FontSize="20"/>
+                                     FontSize="20"
+                                     PointerEntered="PointerEntered" PointerExited="PointerExited"/>
 
                             <PasswordBox x:Name="SignUpPasswordBox"
                                          Password="{Binding User.Password}"
@@ -166,7 +170,8 @@
                                          Width="400"
                                          Height="53"
                                          Margin="0,10,0,0"
-                                         FontSize="20"/>
+                                         FontSize="20"
+                                         PointerEntered="PointerEntered" PointerExited="PointerExited"/>
 
                             <PasswordBox x:Name="SignUpPasswordConfirmBox"
                                          PlaceholderText="Confirm your password"
@@ -175,7 +180,8 @@
                                          Width="400"
                                          Height="53"
                                          Margin="0,10,0,0"
-                                         FontSize="20"/>
+                                         FontSize="20"
+                                         PointerEntered="PointerEntered" PointerExited="PointerExited"/>
 
                             <TextBox x:Name="NameBox"
                                      Text="{Binding User.Name, Mode=TwoWay}"
@@ -185,7 +191,8 @@
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Top"
                                      Margin="0,10,0,0"
-                                     FontSize="20"/>
+                                     FontSize="20"
+                                     PointerEntered="PointerEntered" PointerExited="PointerExited"/>
 
                             <StackPanel>
 
@@ -193,13 +200,15 @@
                                          Margin = "100,30,0,0" 
                                          IsChecked="{Binding User.Gender, Mode=TwoWay}"
                                          GroupName="Gender"
-                                         Content = "Male" />
+                                         Content = "Male" 
+                                         PointerEntered="PointerEntered" PointerExited="PointerExited"/>
 
                                 <RadioButton x:Name = "female" 
                                          Margin = "200,-33,0,0" 
                                          IsChecked="{Binding User.Gender, Mode=TwoWay}"
                                          GroupName = "Gender" 
-                                         Content = "Female" />
+                                         Content = "Female"
+                                         PointerEntered="PointerEntered" PointerExited="PointerExited"/>
                             </StackPanel>
 
 

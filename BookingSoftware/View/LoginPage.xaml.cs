@@ -26,5 +26,37 @@ namespace BookingSoftware.View
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
         }
+
+        private new void PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            ChangeButtonState();
+        }
+
+        private new void PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            ChangeButtonState();
+        }
+
+        private void ChangeButtonState()
+        {
+            if (SignUpEmailBox.Text != string.Empty && SignUpPasswordBox.Password != string.Empty && SignUpPasswordConfirmBox.Password != string.Empty &&  NameBox.Text != string.Empty)
+            {
+                if (SignUpPasswordConfirmBox.Password == SignUpPasswordBox.Password)
+                {
+                    SignUpBtn.Opacity = 100;
+                    SignUpBtn.IsEnabled = true;
+                }
+                else
+                {
+                    SignUpBtn.Opacity = 0;
+                    SignUpBtn.IsEnabled = false;
+                }
+            }
+            else
+            {
+                SignUpBtn.Opacity = 0;
+                SignUpBtn.IsEnabled = false;
+            }
+        }
     }
 }
