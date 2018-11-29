@@ -58,5 +58,10 @@ namespace BookingSoftware.View
                 SignUpBtn.IsEnabled = false;
             }
         }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CustomerLandingPage));
+        }
     }
 }

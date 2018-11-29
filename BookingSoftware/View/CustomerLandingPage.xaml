@@ -1,0 +1,179 @@
+﻿<Page
+    x:Class="BookingSoftware.View.CustomerLandingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BookingSoftware.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:viewmodel="using:BookingSoftware.ViewModel"
+    mc:Ignorable="d"
+    Background="White">
+
+    <Grid
+          Margin="0,0,0,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/background5.jpg"/>
+        </Grid.Background>
+        <SplitView x:Name="Hb_Menu" 
+                   IsPaneOpen="False" 
+                   DisplayMode="CompactOverlay" 
+                   CompactPaneLength="50" Opacity="0.7">
+            <SplitView.Pane>
+                <StackPanel Background="#FF0C1647"
+                            Margin="0,0,0,0">
+                    
+                    <Button x:Name="HamburgerButton" 
+                            FontFamily="Segoe MDL2 Assets" 
+                            Content="" 
+                            FontSize="30"
+                            Margin="5,50,275,0"
+                            Foreground="White"
+                            Click="HamburgerButton_Click"
+                            Background="{x:Null}" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Center" 
+                            FontWeight="Bold"/>
+
+                    <Button x:Name="profilebtn" 
+                            FontFamily="Segoe MDL2 Assets"
+                            HorizontalAlignment="Center"
+                            Content=""
+                            FontSize="54"
+                            Margin="0,50,0,0"
+                            Foreground="White"
+                            Background="{x:Null}"/>
+
+                    <Button x:Name="ViewProfile"
+                            Content="My Profile"
+                            HorizontalAlignment="Center"
+                            FontSize="25"
+                            Width="150"
+                            FontFamily="Segoe UI Light"
+                            Background="#FF3E8140"
+                            Margin="0,20,0,0"
+                            Foreground="White">
+                    </Button>
+
+                    <Button x:Name="menu1btn" 
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="20"
+                            Content=""
+                            Height="50"
+                            Width="50"
+                            Margin="0,100,0,0"
+                            Foreground="White"
+                            Background="{x:Null}" />
+
+                    <TextBlock Text="Account settings" 
+                               FontSize="20"
+                               FontFamily="Segoe UI Light"
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               Margin="50,-50,0,0"/>
+
+                    <Button x:Name="menu2btn"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="20"
+                            Content=""
+                            Height="50"
+                            Width="50"
+                            Foreground="White"
+                            Background="{x:Null}" />
+
+                    <TextBlock Text="Reservations" 
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               Margin="50,-50,0,0"
+                               FontFamily="Segoe UI Light"/>
+
+                    <Button x:Name="menu3btn"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="20"
+                            Content=""
+                            Height="50"
+                            Width="50"
+                            Foreground="White"
+                            Background="{x:Null}"/>
+
+                    <TextBlock Text="New Reservation" 
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               Margin="50,-50,0,0"/>
+
+                    <Button x:Name="menu4btn"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="20"
+                            Content=""
+                            Height="50"
+                            Width="50"
+                            Foreground="White"
+                            Background="{x:Null}" />
+
+                    <TextBlock Text="Customer Support" 
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               Margin="50,-50,0,0"/>
+
+                    <Button x:Name="menu5btn"
+                            FontFamily="Segoe MDL2 Assets"
+                            Content=""
+                            Height="50"
+                            Width="50"
+                            Margin="0,450,0,0"
+                            FontSize="20"
+                            Foreground="White"
+                            Background="{x:Null}"/>
+
+                    <TextBlock Text="Log out" 
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               Margin="50,-50,0,0"/>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                
+                <TextBlock Text="W E L C O M E "
+                           FontSize="60"
+                           HorizontalAlignment="Center" 
+                           FontFamily="Segoe UI Light"
+                           Foreground="White"
+                           Margin="0,50,0,0"/>
+            </SplitView.Content>
+        </SplitView>
+        <StackPanel Width="1400" 
+                    Height="800"
+                    Margin="150,150,0,0" 
+                    Background="#FF010729" 
+                    Opacity="0.7">
+
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur x:Name="BlurBehavior1"
+                                Value="5"
+                                Duration="250"
+                                Delay="250"
+                                AutomaticallyStart="True"/>
+            </interactivity:Interaction.Behaviors>
+        </StackPanel>
+        <StackPanel>
+            <Rectangle HorizontalAlignment="Left" 
+                       Height="130" 
+                       Margin="736,20,0,0" 
+                       VerticalAlignment="Stretch" 
+                       Width="500" 
+                       Stroke="White" 
+                       StrokeThickness="3"
+                       />
+            <TextBlock Text="Active reservations"
+                       FontSize="30"
+                       Foreground="White"
+                       Margin="370,100,0,0"
+                       />
+        </StackPanel>
+    </Grid>
+</Page>

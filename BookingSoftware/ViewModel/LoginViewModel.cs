@@ -56,8 +56,6 @@ namespace BookingSoftware.ViewModel
             //{
             //    //TODO: Display an error in view
             //}
-            FrameNavigation.ActivateFrameNavigation(typeof(TestCustomerPage));
-
         }
 
 
@@ -80,6 +78,11 @@ namespace BookingSoftware.ViewModel
         public void ShowResetAccountView(object s)
         {
             FrameNavigation.ActivateFrameNavigation(typeof(ForgetPasswordPage));
+        }
+
+        public void ShowCustomerLandingPageView(object s)
+        {
+            FrameNavigation.ActivateFrameNavigation(typeof(CustomerLandingPage));
         }
     }
 }
